@@ -1,0 +1,36 @@
+{% extends "templates/base.html" %} {% block title %} {% if category|length > 0
+%} {{ category[0].category_name }} {% else %} {{ _('Library') }} {% endif %} {%
+endblock %} {% block content %}
+<div class="category-detail">
+  <a href="/library">{{_("Back to library")}}</a>
+  {% if category|length > 0 %} {% for _category in category %}
+  <div class="category-card">
+    <div class="category-info">
+      <div>{{_category.category_name}}</div>
+      <p>{{_category.description}}</p>
+    </div>
+  </div>
+  {% endfor %}
+  <h1>{{ _("Books") }}</h1>
+  <div class="books">
+    {% if books|length > 0 %} {% for book in books %}
+    <div class="card">
+      <a href="/library/book_detail?book={{book.book_name}}">
+        <div
+          class="card-image"
+          style="background-image :url('{{ book.image }}')"
+        >
+          <!--<img src="{{ book.image }}" alt="Book image"/>-->
+        </div>
+        <div class="card-title">{{book.title}}</div>
+      </a>
+    </div>
+    {% endfor %} {% else %}
+    <div class="no-books">{{ _("No books found") }}</div>
+    {% endif %}
+  </div>
+  {% else %}
+  <div>{{ _("No such author found")}}</div>
+  {% endif %}
+</div>
+{% endblock %}

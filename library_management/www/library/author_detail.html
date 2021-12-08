@@ -1,0 +1,38 @@
+{% extends "templates/base.html" %} {% block title %} {% if author|length > 0 %}
+{{ author[0].author_name }} {% else %} {{ _('Library') }} {% endif %} {%
+endblock %} {% block content %}
+<div class="author-detail">
+
+  <a href="/library">{{_("Back to library")}}</a>
+  {% if author|length > 0 %} {% for _author in author %}
+  <div class="author-card">
+    <img alt="{{_("Author image")}}" src="{{_author.image}}" />
+    <div class="author-info">
+      <div>{{_author.author_name}}</div>
+      <p>{{_author.bio}}</p>
+    </div>
+  </div>
+  {% endfor %}
+  <h1>{{ _("Books") }}</h1>
+  <div class="books">
+    {% if books|length > 0 %} {% for book in books %}
+    <div class="card">
+      <a href="/library/book_detail?book={{book.book_name}}">
+        <div
+          class="card-image"
+          style="background-image :url('{{ book.image }}')"
+        >
+          <!--<img src="{{ book.image }}" alt="Book image"/>-->
+        </div>
+        <div class="card-title">{{book.title}}</div>
+      </a>
+    </div>
+    {% endfor %} {% else %}
+    <div class="no-books">{{ _("No books found") }}</div>
+    {% endif %}
+  </div>
+  {% else %}
+  <div>{{ _("No such author found")}}</div>
+  {% endif %}
+</div>
+{% endblock %}

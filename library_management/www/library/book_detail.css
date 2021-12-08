@@ -1,0 +1,41 @@
+.book-detail{
+      width: 80%;
+      margin: 20px auto;
+      font-family: 'Noto Kufi Arabic','Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+}
+.book-detail .book-detail-main{
+      display: flex;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+}
+.book-detail .book-detail-image{
+      flex: 1;
+}
+.book-detail .book-detail-image img{
+     min-width: 150px;
+}
+.book-detail .book-detail-info{
+      flex: 4;
+      margin: 0 20px;
+}
+.book-detail .book-detail-info div{
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: bold;
+}
+.book-detail .book-detail-info td{
+      padding: 5px 10px;
+}
+.book-detail .book-description{
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-top: 20px;
+}
+.book-detail .book-description .title{
+      font-size: 1.1em;
+      font-weight: bold;
+}

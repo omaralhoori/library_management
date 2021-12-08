@@ -1,0 +1,48 @@
+.publisher-detail{
+  width: 80%;
+  margin: 20px auto;
+}
+
+.publisher-detail .publisher-card{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+}
+
+
+.publisher-detail .publisher-card .publisher-info{
+  margin: 0 20px;
+}
+.publisher-detail .publisher-card .publisher-info div:first-child{
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.publisher-detail .card{
+  display: inline-block;
+  width: 300px;
+  height: 350px;
+  margin: 20px;
+  text-align: center;
+}
+.publisher-detail .card-image{
+  height: 280px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  background-color: #cccccc; 
+}
+
+.publisher-detail a:hover{
+  text-decoration: none;
+}
+.publisher-detail a{
+  color: #222;
+}
+
+.publisher-detail td{
+  padding: 5px 10px;
+}

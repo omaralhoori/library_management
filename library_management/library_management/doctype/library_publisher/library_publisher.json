@@ -1,0 +1,77 @@
+{
+ "autoname": "format:LIBRARY-PUBLISHER-{#####}",
+ "creation": "2021-12-07 16:16:40.402407",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "publisher_name",
+  "bio",
+  "image",
+  "address",
+  "telephone",
+  "fax",
+  "web_address"
+ ],
+ "fields": [
+  {
+   "fieldname": "publisher_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Publisher Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bio",
+   "fieldtype": "Small Text",
+   "label": "Bio"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Telephone"
+  },
+  {
+   "fieldname": "fax",
+   "fieldtype": "Data",
+   "label": "Fax"
+  },
+  {
+   "fieldname": "web_address",
+   "fieldtype": "Data",
+   "label": "Web Address"
+  }
+ ],
+ "modified": "2021-12-07 16:16:40.402407",
+ "modified_by": "Administrator",
+ "module": "Library Management",
+ "name": "Library Publisher",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

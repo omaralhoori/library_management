@@ -1,0 +1,129 @@
+{% extends "templates/base.html" %}
+{% block title %}{{ _('Library') }}{% endblock %}
+ {% block content %}
+<div class="library-main-page"> 
+  <form role="search" id="form" class="search-form">
+    <div class="search-bar">
+      <input
+        type="search"
+        id="query"
+        name="q"
+        autocomplete="off"
+        placeholder="Search..."
+        aria-label="Search through site content"
+      />
+      <button>
+        <svg viewBox="0 0 1024 1024">
+          <path
+            class="path1"
+            d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <div class="search-type">
+      <div class="search-by">{{ _("Search by") }}:</div>
+      <span>&times;</span>
+      <input type="radio" id="radio1" name="search-type" value="title" checked />
+      <label for="radio1">{{ _("Book Title") }}</label>
+      <input type="radio" id="radio2" name="search-type" value="author_name" />
+      <label for="radio2">{{ _("Author Name") }}</label>
+      <input type="radio" id="radio3" name="search-type" value="description" />
+      <label for="radio3">{{ _("Book Description") }}</label>
+      <input type="radio" id="radio4" name="search-type" value="isbn_issn" />
+      <label for="radio4">{{ _("ISBN/ISSN") }}</label>
+    </div>
+  </form>
+  {% if not pages %}
+  <a class="back-button" href="/library">{{_("Back to library")}}</a>
+
+  {% endif %}
+  <div class="main-content"> 
+    {% if categories %}
+      <div class="library-categories">
+        <div class="title">{{ _("Categories") }}</div>
+        {% for category in categories %}
+          <div class="category">
+            <a href="/library/category_detail?category={{ category.name }}"> {{ category.category_name }}</a>
+          </div>
+
+        {% endfor %}
+      </div>
+
+    {% endif %}
+    
+    <div class="main-library">
+      
+      <div class="title">{{ _("Books") }}</div>
+      <div class="books">
+        {% if books|length > 0 %} {% for book in books %}
+        <div class="card">
+        <a href="/library/book_detail?book={{book.book_name}}">
+          <div class="card-image" style="background-image :url('{{ book.image }}')">
+            <!--<img src="{{ book.image }}" alt="Book image"/>-->
+          </div>
+          <div class="card-title">{{book.title}}</div>
+          <div class="card-author">{{ book.author }}</div>
+          </a>
+        </div>
+        {% endfor %} {% else %}
+        <div class="no-books">{{ _("No books found") }}</div>
+        {% endif %}
+      </div>
+      {% if pages %}
+        <div class="book-pagination">
+          {% if currentPage!=0 %}
+            <a href="/library?page={{ currentPage }}">&laquo;</a>
+          {% endif %}
+          {% for i in range(pages) %}
+          
+            {% if currentPage==i %}
+            <a href="/library?page={{ i + 1 }}" class="active">{{ i + 1 }}</a>
+            {% else %}
+            <a href="/library?page={{ i + 1 }}">{{ i + 1 }}</a>
+            {% endif %}
+          {% endfor %}
+          {% if currentPage!=pages-1 %}
+            <a href="/library?page={{ currentPage + 2 }}">&raquo;</a>
+          {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+  </div>
+</div>
+<script>
+  const f = document.querySelector(".library-main-page #form");
+  const searchBar = document.querySelector(".library-main-page .search-bar");
+  const q = document.querySelector(".library-main-page #query");
+  const searchUrl = "/library";
+  const searchType = document.querySelector(".library-main-page .search-type");
+  //const site = 'pagedart.com';
+
+  searchBar.addEventListener("click", () => {
+    if (searchType) {
+      searchType.style.display = "block";
+    }
+  });
+
+  const searchTypeButton = document.querySelector(
+    ".library-main-page .search-type span"
+  );
+  if (searchTypeButton) {
+    searchTypeButton.addEventListener("click", () => {
+      if (searchType) {
+        searchType.style.display = "none";
+      }
+    });
+  }
+  function submitted(event) {
+    event.preventDefault();
+    const selectedType = document.querySelector('input[name="search-type"]:checked').value;
+    const url = `${searchUrl}?search_type=${selectedType}&search=${q.value}`;
+    const win = window.open(url, "_self");
+    win.focus();
+  }
+
+  f.addEventListener("submit", submitted);
+</script>
+{% endblock %}

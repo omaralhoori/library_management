@@ -1,0 +1,44 @@
+.category-detail{
+  width: 80%;
+  margin: 20px auto;
+}
+
+.category-detail .category-card{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+}
+
+
+.category-detail .category-card .category-info{
+  margin: 0 20px;
+}
+.category-detail .category-card .category-info div:first-child{
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.category-detail .card{
+  display: inline-block;
+  width: 300px;
+  height: 350px;
+  margin: 20px;
+  text-align: center;
+}
+.category-detail .card-image{
+  height: 280px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  background-color: #cccccc; 
+}
+
+.category-detail a:hover{
+  text-decoration: none;
+}
+.category-detail a{
+  color: #222;
+}

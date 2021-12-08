@@ -1,0 +1,65 @@
+{% extends "templates/base.html" %} {% block title %} {% if books|length > 0 %}
+{{ books[0].title }} {% else %} {{ _('Library') }} {% endif %} {% endblock %} {%
+block content %}
+<div class="book-detail">
+    <a href="/library">{{_("Back to library")}}</a>
+  {% if books|length > 0 %} {% for book in books %}
+  <div class="book-detail-main">
+    <div class="book-detail-image">
+      <img src="{{book.image}}" />
+    </div>
+    <div class="book-detail-info">
+      <div>{{book.title}}</div>
+      <table>
+        <tr>
+          <td>{{_("Author")}}</td>
+          <td>: <a href="/library/author_detail?author={{book.author_name}}">{{book.author}}</a></td>
+        </tr>
+        <tr>
+          <td>{{_("Publisher")}}</td>
+          <td>: {% if book.publisher %}
+            <a href="/library/publisher_detail?publisher={{book.publisher_name}}">{{book.publisher}}</a>
+        {% else %}
+          -
+        {% endif %}</td>
+        </tr>
+        <tr>
+          <td>{{_("Category")}}</td>
+          <td>: {% if book.category %}
+              <a href="/library/category_detail?category={{book.category_name}}">{{book.category}}</a>
+          {% else %}
+            -
+          {% endif %}</td>
+        </tr>
+        <tr>
+          <td>{{_("Publishing date")}}</td>
+          <td>: {{book.release_date or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("ISBN/ISSN")}}</td>
+          <td>: {{book.isbn_issn or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("Language")}}</td>
+          <td>: {{book.language or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("Number of pages")}}</td>
+          <td>: {{book.pages or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("Stock")}}</td>
+          <td>: {{book.stock or "0" }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="book-description">
+    <div class="title">{{_("Book description")}}</div>
+    <p class="description">{{book.description}}</p>
+  </div>
+  {% endfor %} {% else %}
+  <div class="no-books">{{ _("No such book found") }}</div>
+  {% endif %}
+</div>
+{% endblock %}

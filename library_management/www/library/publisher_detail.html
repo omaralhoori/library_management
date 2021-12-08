@@ -1,0 +1,64 @@
+{% extends "templates/base.html" %} {% block title %} {% if publisher|length > 0
+%} {{ publisher[0].publisher_name }} {% else %} {{ _('Library') }} {% endif %} {%
+endblock %} {% block content %}
+<div class="publisher-detail">
+  <a href="/library">{{_("Back to library")}}</a>
+  {% if publisher|length > 0 %} {% for _publisher in publisher %}
+  <div class="publisher-card">
+    <div class="publisher-detail-image">
+      <img src="{{_publisher.image}}" alt="{{_('Publisher image')}}" />
+    </div>
+    <div class="publisher-info">
+      <div>{{_publisher.publisher_name}}</div>
+      <table>
+        <tr>
+          <td>{{_("Bio")}}</td>
+          <td>: {{_publisher.bio or "-"}}</td>
+        </tr>
+        <tr>
+          <td>{{_("Address")}}</td>
+          <td>: {{_publisher.address or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("Telephone")}}</td>
+          <td>: {{_publisher.telephone or "-"}}</td>
+        </tr>
+        <tr>
+          <td>{{_("Fax")}}</td>
+          <td>: {{_publisher.fax or "-" }}</td>
+        </tr>
+        <tr>
+          <td>{{_("Web Address")}}</td>
+          <td>: {% if _publisher.web_address %}
+            <a href="{{_publisher.web_address}}">{{_publisher.web_address}}</a>
+        {% else %}
+          -
+        {% endif %}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+  <h1>{{ _("Books") }}</h1>
+  <div class="books">
+    {% if books|length > 0 %} {% for book in books %}
+    <div class="card">
+      <a href="/library/book_detail?book={{book.book_name}}">
+        <div
+          class="card-image"
+          style="background-image :url('{{ book.image }}')"
+        >
+          <!--<img src="{{ book.image }}" alt="Book image"/>-->
+        </div>
+        <div class="card-title">{{book.title}}</div>
+      </a>
+    </div>
+    {% endfor %} {% else %}
+    <div class="no-books">{{ _("No books found") }}</div>
+    {% endif %}
+  </div>
+  {% else %}
+  <div>{{ _("No such author found")}}</div>
+  {% endif %}
+</div>
+{% endblock %}
